@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="showSwiper">
       <swiper-slide v-for="item of list" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl" />
       </swiper-slide>
@@ -18,17 +18,15 @@ export default {
         swiperOption: {
         pagination: '.swiper-pagination',
         loop: true
-        },
-        list: [
-            {
-                id: 1,
-                imgUrl: 'https://res.sui.com/img/index/banner_01.jpg'
-            },
-            {
-                id: 2,
-                imgUrl: 'https://res.sui.com/img/index/banner_02.jpg'
-            }
-        ]
+      },
+    }
+  },
+  props: {
+    list: Array
+  },
+  computed: {
+    showSwiper () {
+      return this.list.length
     }
   }
 }

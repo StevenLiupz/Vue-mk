@@ -1,7 +1,7 @@
 <template>
     <div class="icons">
         <swiper :options="swiperOption">
-            <swiper-slide v-for="page of pages" :key="page">
+            <swiper-slide v-for="(page, index) of pages" :key="index">
                 <div class="icon" v-for="item of page" :key="item.id">
                     <div class='icon-img'>
                         <img class='icon-img-content' :src='item.imgUrl' />
@@ -16,59 +16,14 @@
 <script>
 export default {
   name: 'homeIcons',
-  props: {},
+  props: {
+      list: Array
+  },
   data () {
     return {
       swiperOption: {
         autoplay: false
-      },
-      iconList: [
-            {
-                id: '001',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '景点门票优惠大放送'
-            },
-            {
-                id: '002',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '动物园'
-            },
-            {
-                id: '003',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '景点门票'
-            },
-            {
-                id: '004',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '动物园'
-            },
-            {
-                id: '005',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '景点门票'
-            },
-            {
-                id: '006',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '动物园'
-            },
-            {
-                id: '007',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-                desc: '景点门票'
-            },
-            {
-                id: '008',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/3e/86314b2af03b7502.png',
-                desc: '水上乐园'
-            },
-            {
-                id: '009',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/8246f27355943202.png',
-                desc: '游乐场'
-            }
-      ]
+      }
     }
   },
   computed: {
@@ -76,7 +31,7 @@ export default {
     pages() {
         const pages = []
         // 循环数据
-        this.iconList.forEach((item, index) => {
+        this.list.forEach((item, index) => {
             const page = Math.floor(index / 8) // 计算页数（每页放8个icon）
             // 如果该页不存在，则先将该页设置为一个空数组
             if(!pages[page]) {
