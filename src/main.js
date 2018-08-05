@@ -13,6 +13,7 @@ import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body)
+// 初始化轮播图插件
 Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
